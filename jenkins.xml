@@ -10,7 +10,9 @@
     </logRotator>
     <keepDependencies>false</keepDependencies>
     <properties>
-        <nectar.plugins.rbac.groups.JobProxyGroupContainer plugin="nectar-rbac@3.9"/>
+        <nectar.plugins.rbac.groups.JobProxyGroupContainer plugin="nectar-rbac@3.9">
+            <groups/>
+        </nectar.plugins.rbac.groups.JobProxyGroupContainer>
         <com.cloudbees.jenkins.plugins.PublicKey plugin="cloudbees-public-key@1.1"/>
         <com.cloudbees.plugins.deployer.DeployNowJobProperty plugin="cloudbees-deployer-plugin@4.13">
             <oneClickDeploy>false</oneClickDeploy>
@@ -25,8 +27,11 @@
                 </com.cloudbees.plugins.deployer.impl.run.RunHostImpl>
             </hosts>
         </com.cloudbees.plugins.deployer.DeployNowJobProperty>
+        <com.cloudbees.jenkins.plugins.securecopy.ExportsJobProperty plugin="cloudbees-secure-copy@3.2">
+            <exports/>
+        </com.cloudbees.jenkins.plugins.securecopy.ExportsJobProperty>
     </properties>
-    <scm class="hudson.plugins.git.GitSCM" plugin="git@1.5.0">
+    <scm class="hudson.plugins.git.GitSCM" plugin="git@1.4.0">
         <configVersion>2</configVersion>
         <userRemoteConfigs>
             <hudson.plugins.git.UserRemoteConfig>
