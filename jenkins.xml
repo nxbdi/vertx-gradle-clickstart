@@ -1,0 +1,117 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<project>
+    <actions/>
+    <description></description>
+    <logRotator class="hudson.tasks.LogRotator">
+        <daysToKeep>60</daysToKeep>
+        <numToKeep>-1</numToKeep>
+        <artifactDaysToKeep>-1</artifactDaysToKeep>
+        <artifactNumToKeep>20</artifactNumToKeep>
+    </logRotator>
+    <keepDependencies>false</keepDependencies>
+    <properties>
+        <nectar.plugins.rbac.groups.JobProxyGroupContainer plugin="nectar-rbac@3.9"/>
+        <com.cloudbees.jenkins.plugins.PublicKey plugin="cloudbees-public-key@1.1"/>
+        <com.cloudbees.plugins.deployer.DeployNowJobProperty plugin="cloudbees-deployer-plugin@4.13">
+            <oneClickDeploy>false</oneClickDeploy>
+            <hosts>
+                <com.cloudbees.plugins.deployer.impl.run.RunHostImpl>
+                    <targets class="java.util.Collections$UnmodifiableRandomAccessList" resolves-to="java.util.Collections$UnmodifiableList">
+                        <c class="list"/>
+                        <list reference="../c"/>
+                    </targets>
+                    <user>(jenkins)</user>
+                    <account>${account}</account>
+                </com.cloudbees.plugins.deployer.impl.run.RunHostImpl>
+            </hosts>
+        </com.cloudbees.plugins.deployer.DeployNowJobProperty>
+    </properties>
+    <scm class="hudson.plugins.git.GitSCM" plugin="git@1.5.0">
+        <configVersion>2</configVersion>
+        <userRemoteConfigs>
+            <hudson.plugins.git.UserRemoteConfig>
+                <name></name>
+                <refspec></refspec>
+                <url>${repositoryUrl}</url>
+            </hudson.plugins.git.UserRemoteConfig>
+        </userRemoteConfigs>
+        <branches>
+            <hudson.plugins.git.BranchSpec>
+                <name>**</name>
+            </hudson.plugins.git.BranchSpec>
+        </branches>
+        <disableSubmodules>false</disableSubmodules>
+        <recursiveSubmodules>false</recursiveSubmodules>
+        <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>
+        <authorOrCommitter>false</authorOrCommitter>
+        <clean>false</clean>
+        <wipeOutWorkspace>false</wipeOutWorkspace>
+        <pruneBranches>false</pruneBranches>
+        <remotePoll>false</remotePoll>
+        <ignoreNotifyCommit>false</ignoreNotifyCommit>
+        <useShallowClone>false</useShallowClone>
+        <buildChooser class="hudson.plugins.git.util.DefaultBuildChooser"/>
+        <gitTool>Default</gitTool>
+        <submoduleCfg class="list"/>
+        <relativeTargetDir></relativeTargetDir>
+        <reference></reference>
+        <excludedRegions></excludedRegions>
+        <excludedUsers></excludedUsers>
+        <gitConfigName></gitConfigName>
+        <gitConfigEmail></gitConfigEmail>
+        <skipTag>false</skipTag>
+        <includedRegions></includedRegions>
+        <scmName></scmName>
+    </scm>
+    <canRoam>true</canRoam>
+    <disabled>false</disabled>
+    <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
+    <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+    <jdk>(Default)</jdk>
+    <triggers class="vector"/>
+    <concurrentBuild>false</concurrentBuild>
+    <builders>
+        <hudson.plugins.gradle.Gradle plugin="gradle@1.23">
+            <description></description>
+            <switches></switches>
+            <tasks>clean modZip</tasks>
+            <rootBuildScriptDir></rootBuildScriptDir>
+            <buildFile></buildFile>
+            <gradleName>gradle-1.7</gradleName>
+            <useWrapper>false</useWrapper>
+            <makeExecutable>false</makeExecutable>
+            <fromRootBuildScriptDir>false</fromRootBuildScriptDir>
+            <useWorkspaceAsHome>false</useWorkspaceAsHome>
+        </hudson.plugins.gradle.Gradle>
+    </builders>
+    <publishers>
+        <hudson.tasks.ArtifactArchiver>
+            <artifacts>build/libs/*.zip</artifacts>
+            <latestOnly>false</latestOnly>
+            <allowEmptyArchive>false</allowEmptyArchive>
+        </hudson.tasks.ArtifactArchiver>
+        <com.cloudbees.plugins.deployer.DeployPublisher plugin="cloudbees-deployer-plugin@4.13">
+            <deployIfUnstable>false</deployIfUnstable>
+            <hosts>
+                <com.cloudbees.plugins.deployer.impl.run.RunHostImpl>
+                    <targets class="java.util.Collections$UnmodifiableRandomAccessList" resolves-to="java.util.Collections$UnmodifiableList">
+                        <c class="list">
+                            <com.cloudbees.plugins.deployer.impl.run.RunTargetImpl>
+                                <artifact class="com.cloudbees.plugins.deployer.sources.WildcardPathDeploySource">
+                                    <filePattern>build/libs/*.zip</filePattern>
+                                </artifact>
+                                <applicationId>${applicationName}</applicationId>
+                                <applicationConfig/>
+                                <apiEndPoint>https://api.cloudbees.com/api</apiEndPoint>
+                                <deploymentDescription>${JOB_NAME} #${BUILD_NUMBER}</deploymentDescription>
+                            </com.cloudbees.plugins.deployer.impl.run.RunTargetImpl>
+                        </c>
+                        <list reference="../c"/>
+                    </targets>
+                    <user>(jenkins)</user>
+                    <account>${account}</account>
+                </com.cloudbees.plugins.deployer.impl.run.RunHostImpl>
+            </hosts>
+        </com.cloudbees.plugins.deployer.DeployPublisher>
+    </publishers>
+</project>
