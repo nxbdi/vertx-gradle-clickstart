@@ -11,6 +11,8 @@ Should the build succeed, this seed app is deployed on a Tomcat 7 container.
 
 To directly deploy a vert.x module:
 
-    bees app:deploy -t java -RPLUGIN.SRC.java=https://community.ci.cloudbees.com/job/vertx-clickstack/lastSuccessfulBuild/artifact/build/distributions/vertx-clickstack-1.0.0-SNAPSHOT.zip -a APP_ID path/to/module.zip
+```
+$ bees app:deploy -a APP_ID -t java -RPLUGIN.SRC.java=https://community.ci.cloudbees.com/job/vertx-clickstack/lastSuccessfulBuild/artifact/build/distributions/vertx2-clickstack-1.0.0-SNAPSHOT.zip path/to/module.zip
+```
 
 Please don't remove `-t java` as long as `-t vertx2` has not been setup by CloudBees engineering team.
