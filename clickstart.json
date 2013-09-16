@@ -17,7 +17,6 @@
 
 
     "build-with-jenkins": {
-        "plugins" : ["git", "gradle"],
         "template": {
             "type": "https://raw.github.com/CloudBees-community/vertx-gradle-clickstart/master/jenkins.xml",
             "options": {

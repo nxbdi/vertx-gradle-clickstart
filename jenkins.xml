@@ -10,11 +10,7 @@
     </logRotator>
     <keepDependencies>false</keepDependencies>
     <properties>
-        <nectar.plugins.rbac.groups.JobProxyGroupContainer plugin="nectar-rbac@3.9">
-            <groups/>
-        </nectar.plugins.rbac.groups.JobProxyGroupContainer>
-        <com.cloudbees.jenkins.plugins.PublicKey plugin="cloudbees-public-key@1.1"/>
-        <com.cloudbees.plugins.deployer.DeployNowJobProperty plugin="cloudbees-deployer-plugin@4.13">
+        <com.cloudbees.plugins.deployer.DeployNowJobProperty plugin="cloudbees-deployer-plugin">
             <oneClickDeploy>false</oneClickDeploy>
             <hosts>
                 <com.cloudbees.plugins.deployer.impl.run.RunHostImpl>
@@ -27,11 +23,8 @@
                 </com.cloudbees.plugins.deployer.impl.run.RunHostImpl>
             </hosts>
         </com.cloudbees.plugins.deployer.DeployNowJobProperty>
-        <com.cloudbees.jenkins.plugins.securecopy.ExportsJobProperty plugin="cloudbees-secure-copy@3.2">
-            <exports/>
-        </com.cloudbees.jenkins.plugins.securecopy.ExportsJobProperty>
     </properties>
-    <scm class="hudson.plugins.git.GitSCM" plugin="git@1.4.0">
+    <scm class="hudson.plugins.git.GitSCM" plugin="git">
         <configVersion>2</configVersion>
         <userRemoteConfigs>
             <hudson.plugins.git.UserRemoteConfig>
@@ -76,7 +69,7 @@
     <triggers class="vector"/>
     <concurrentBuild>false</concurrentBuild>
     <builders>
-        <hudson.plugins.gradle.Gradle plugin="gradle@1.23">
+        <hudson.plugins.gradle.Gradle plugin="gradle">
             <description></description>
             <switches></switches>
             <tasks>clean modZip</tasks>
@@ -90,12 +83,7 @@
         </hudson.plugins.gradle.Gradle>
     </builders>
     <publishers>
-        <hudson.tasks.ArtifactArchiver>
-            <artifacts>build/libs/*.zip</artifacts>
-            <latestOnly>false</latestOnly>
-            <allowEmptyArchive>false</allowEmptyArchive>
-        </hudson.tasks.ArtifactArchiver>
-        <com.cloudbees.plugins.deployer.DeployPublisher plugin="cloudbees-deployer-plugin@4.13">
+        <com.cloudbees.plugins.deployer.DeployPublisher plugin="cloudbees-deployer-plugin">
             <deployIfUnstable>false</deployIfUnstable>
             <hosts>
                 <com.cloudbees.plugins.deployer.impl.run.RunHostImpl>
