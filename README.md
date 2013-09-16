@@ -7,4 +7,10 @@ This is a "ClickStart" that gets you going with a Gradle - Vert.x 2"seed" projec
 This will setup a continuous deployment pipeline - a CloudBees Git repository, a Jenkins build compiling and running the test suite (on each commit).
 Should the build succeed, this seed app is deployed on a Tomcat 7 container.
 
-# CloudBees Tomcat 7 container
+# CloudBees Vert.x container
+
+To directly deploy a vert.x module:
+
+    bees app:deploy -t java -RPLUGIN.SRC.java=https://community.ci.cloudbees.com/job/vertx-clickstack/lastSuccessfulBuild/artifact/build/distributions/vertx-clickstack-1.0.0-SNAPSHOT.zip -a APP_ID path/to/module.zip
+
+Please don't remove `-t java` as long as `-t vertx2` has not been setup by CloudBees engineering team.
