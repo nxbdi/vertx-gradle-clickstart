@@ -5,6 +5,7 @@
     "description": "Vert.x app built with Gradle running on CloudBees",
     "icon": "https://raw.github.com/CloudBees-community/vertx-gradle-clickstart/master/clickstart-icon.png",
     "doc-url": "https://github.com/CloudBees-community/vertx-gradle-clickstart/README.md",
+    "app-package-type": "zip",
     "app-package": "https://community.ci.cloudbees.com/job/vertx-gradle-clickstart/lastSuccessfulBuild/artifact/build/libs/vertx-gradle-clickstart-1.0.0-SNAPSHOT.zip",
     "order": 30,
     "supported-by": "community",
