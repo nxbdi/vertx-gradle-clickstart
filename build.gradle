@@ -49,6 +49,9 @@ install - install any jars produced to the local Maven repository (.m2)
  */
 
 dependencies {
+    compile "mysql:mysql-connector-java:5.1.26"
+    compile "com.bloidonia:mod-jdbc-persistor:2.1"
+
     provided "io.vertx:vertx-core:$vertxVersion"
     provided "io.vertx:vertx-platform:$vertxVersion"
 

@@ -15,10 +15,14 @@
             "runtime.PLUGIN.SRC.java": "https://community.ci.cloudbees.com/job/vertx-clickstack/lastSuccessfulBuild/artifact/build/distributions/vertx2-clickstack-1.0.0-SNAPSHOT.zip"
         }
     },
-
-
+    "databases": [
+        {
+            "type": "mysql",
+            "alias": "mydb"
+        }
+    ],
     "build-with-jenkins": {
-        "plugins" : ["git", "gradle"],
+        "plugins": ["git", "gradle"],
         "template": {
             "type": "https://raw.github.com/CloudBees-community/vertx-gradle-clickstart/master/jenkins.xml",
             "options": {
