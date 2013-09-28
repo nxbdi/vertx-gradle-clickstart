@@ -15,7 +15,6 @@
  */
 package localdomain.localhost;
 
-import com.bloidonia.vertx.mods.JsonUtils;
 import org.vertx.java.core.AsyncResult;
 import org.vertx.java.core.Handler;
 import org.vertx.java.core.eventbus.EventBus;
@@ -52,16 +51,7 @@ public class DemoVerticle extends Verticle {
                         "</html>");
             }
         }).listen(port);
-
-        final JsonObject persistorConfig;// = container.config().getObject("db_mydb");
-        persistorConfig = new JsonObject() {{
-            putString("address", "com.bloidonia.jdbcpersistor");
-            putString("driver", "com.mysql.jdbc.Driver");
-            putString("url", "jdbc:" + System.getProperty("DATABASE_URL_MYDB"));
-            putString("username", System.getProperty("DATABASE_USERNAME_MYDB"));
-            putString("password", System.getProperty("DATABASE_PASSWORD_MYDB"));
-        }};
-
+        final JsonObject persistorConfig = container.config().getObject("database.mydb");
 
         final String persistorAddress = persistorConfig.getString("address");
 
