@@ -12,7 +12,7 @@
     "runtime": {
         "type": "java",
         "app-parameters": {
-            "runtime.PLUGIN.SRC.java": "https://community.ci.cloudbees.com/job/vertx-clickstack/lastSuccessfulBuild/artifact/build/distributions/vertx2-clickstack-1.0.0-SNAPSHOT.zip"
+            "runtime.PLUGIN.SRC.java": "https://community.ci.cloudbees.com/job/vertx-clickstack/lastSuccessfulBuild/artifact/build/distributions/vertx-clickstack-2-1.0.0-SNAPSHOT.zip"
         }
     },
     "databases": [
